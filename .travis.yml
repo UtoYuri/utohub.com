@@ -11,7 +11,22 @@ branches:
   only:
     - master
 
+install:
+  - yarn
+
 script:
   - yarn build
-  - pwd
-  - ls
+  - docker build -t utohub.com:latest . --no-cache
+
+deploy:
+  - provider: script
+    script: deploy_production.sh
+    on:
+      branch: master
+
+
+after_script:
+  - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
+  - docker push $REGISTRY/utohub/utohub.com:latest
+  - docker rmi -f utohub.com:latest
+  - docker logout
