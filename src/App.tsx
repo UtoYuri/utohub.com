@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from "./routes/Home/Home";
 import ErrorPage from "./routes/ErrorPage/ErrorPage";
+import VideoPlayer from "./routes/VideoPlayer/VideoPlayer";
 
 
 class App extends React.Component {
@@ -10,8 +11,9 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route component={ErrorPage} />
+          <Route path="/" exact component={ Home } />
+          <Route path="/videoPlayer" exact component={ VideoPlayer } />
+          <Route component={ ErrorPage } />
         </Switch>
       </Router>
     );
