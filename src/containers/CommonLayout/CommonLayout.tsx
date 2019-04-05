@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import Footer from "../Footer/Footer";
+import styles from './CommonLayout.less';
 
 interface IProps {
   children: React.ReactNode;
@@ -9,10 +10,10 @@ interface IProps {
 class CommonLayout extends React.Component<IProps, {}> {
   render() {
     return (
-      <React.Fragment>
-        {this.props.children}
+      <div className={ styles.container }>
+        { this.props.children }
         <Footer />
-      </React.Fragment>
+      </div>
     );
   }
 }
