@@ -31,3 +31,23 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .container {
+    & > .content {
+      width: 90%;
+      margin: 0 auto;
+
+      & > .banner {
+        & > .title {
+          font-size: 3em;
+        }
+
+        & > .slogan,
+        & > .description {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
