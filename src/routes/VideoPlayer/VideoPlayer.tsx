@@ -52,7 +52,7 @@ class VideoPlayer extends React.Component<{}, IState> {
               scrolling="no"
               src={ playerUrl }
               className={ styles.player }
-            /> : <div className={styles.poster}>no source to playing...</div> }
+            /> : <div className={ styles.poster }>no source to play...</div> }
           </div>
         </div>
       </Layout>
