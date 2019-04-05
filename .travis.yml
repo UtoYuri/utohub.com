@@ -20,6 +20,6 @@ script:
 
 after_script:
   - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
+  - docker tag utohub.com:latest $REGISTRY/utohub/utohub.com:latest
   - docker push $REGISTRY/utohub/utohub.com:latest
-  - docker rmi -f utohub.com:latest
   - docker logout
