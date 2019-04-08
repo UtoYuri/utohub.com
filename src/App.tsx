@@ -12,7 +12,7 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route path="/" exact component={ Home } />
-          <Route path="/videoPlayer" exact component={ VideoPlayer } />
+          <Route path="/player" exact component={ VideoPlayer } />
           <Route component={ ErrorPage } />
         </Switch>
       </Router>

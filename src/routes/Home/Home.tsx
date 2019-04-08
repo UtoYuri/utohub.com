@@ -1,11 +1,59 @@
 import * as React from 'react';
-import { Icon } from 'antd';
+import { Avatar, Drawer, Icon, List } from 'antd';
 import 'antd/lib/icon/style/css';
+import 'antd/lib/drawer/style/css';
+import 'antd/lib/list/style/css';
+import 'antd/lib/avatar/style/css';
 
 import styles from './Home.less';
 import Layout from "../../containers/CommonLayout/CommonLayout";
 
-class Home extends React.Component {
+interface IProjectMeta {
+  name: string;
+  title: string;
+  logoUrl?: string | null;
+  link?: string | null;
+  description?: string;
+}
+
+const projects: IProjectMeta[] = [
+  // {
+  //   name: '',
+  //   title: '',
+  //   logoUrl: null,
+  //   description: '',
+  //   link: null,
+  // },
+];
+
+interface IState {
+  projectsVisible: boolean;
+}
+
+class Home extends React.Component<{}, IState> {
+
+  constructor(props: Readonly<{}>) {
+    super(props);
+    this.state = {
+      projectsVisible: false,
+    };
+  }
+
+  toggleProjects = () => {
+    this.setState({
+      projectsVisible: !this.state.projectsVisible,
+    });
+  };
+
+  renderProject = (project: IProjectMeta) => (
+    <List.Item>
+      <List.Item.Meta
+        avatar={project.logoUrl ? <Avatar src={project.logoUrl} /> : null}
+        title={<a href={project.link || 'javascript:'}>{project.title}</a>}
+        description={project.description}
+      />
+    </List.Item>);
+
   render() {
     return (
       <Layout>
@@ -18,17 +66,36 @@ class Home extends React.Component {
             </div>
             <div className={styles.links}>
               <div className={styles.link}>
+                <a href="javascript:" onClick={this.toggleProjects}>
+                  <Icon type="project" className={styles.icon} />
+                </a>
+              </div>
+              <div className={styles.link}>
                 <a href="https://github.com/UtoYuri" target="_blank">
                   <Icon type="github" className={styles.icon} />
                 </a>
               </div>
               <div className={styles.link}>
-                <a href="mailto:support@utohub.com" target="_blank">
+                <a href="mailto:support@utohub.com">
                   <Icon type="mail" className={styles.icon} />
                 </a>
               </div>
             </div>
           </div>
+          <Drawer
+            title="Side Projects & Something Funny"
+            placement="left"
+            onClose={this.toggleProjects}
+            visible={this.state.projectsVisible}
+            className={styles.projectsDrawer}
+            width={320}
+          >
+            <List
+              itemLayout="horizontal"
+              dataSource={projects}
+              renderItem={item => this.renderProject(item)}
+            />
+          </Drawer>
         </div>
       </Layout>
     );
