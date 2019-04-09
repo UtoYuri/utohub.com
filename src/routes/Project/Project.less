@@ -20,16 +20,11 @@
         border: 1px solid @color-normal;
         transition: 0.5s all;
         cursor: pointer;
+        text-decoration: none;
+        color: @color-normal;
 
         &:hover {
           background-color: #f0f0f0;
-        }
-
-        & > a {
-          width: inherit;
-          height: inherit;
-          text-decoration: none;
-          color: @color-normal;
         }
       }
 
@@ -57,6 +52,10 @@
             width: 200px;
             height: 200px;
           }
+        }
+
+        & > .emptyTip {
+          font-weight: bold;
         }
       }
     }

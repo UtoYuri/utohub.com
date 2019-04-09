@@ -42,12 +42,29 @@ class Project extends React.Component<{}, IState> {
     }
     const markdownIt = new MarkdownIt();
     const formatted = frontMatter(markdown);
-    this.setState({
-      markdownLoading: false,
-      markdownLoaded: true,
-      markdownMeta: formatted.attributes,
-      markdownContent: markdownIt.render(formatted.body),
-    });
+    const meta = formatted.attributes as any;
+    if (meta.title) {
+      this.setState({
+        markdownLoading: false,
+        markdownLoaded: true,
+        markdownMeta: meta,
+        markdownContent: markdownIt.render(formatted.body),
+      });
+    } else {
+      const emptyContent = `\
+## 关于
+闲暇之余，挥霍光阴。
+
+#### 作者
+@yuri.zhu
+      `;
+      this.setState({
+        markdownLoading: false,
+        markdownLoaded: false,
+        markdownMeta: meta,
+        markdownContent: markdownIt.render(emptyContent),
+      });
+    }
   }
 
   fetchMarkdown = async (projectName: string) => {
@@ -65,7 +82,7 @@ class Project extends React.Component<{}, IState> {
         <div className={ styles.container }>
           <div className={ styles.content }>
             <div className={ styles.meta }>
-              <div className={styles.backHome}><a href="/">返回</a></div>
+              <a href="/" className={ styles.backHome }>返回</a>
               <Skeleton
                 className={ styles.metaContent }
                 active
@@ -95,7 +112,7 @@ class Project extends React.Component<{}, IState> {
                       { markdownMeta.qrcode ? <img src={ markdownMeta.qrcode } /> : null }
                     </div>
                   </div>
-                  : <div>Empty</div> }
+                  : <div className={ styles.metaContent }><span className={styles.emptyTip}>Project Not Found!</span></div> }
               </Skeleton>
             </div>
             <Skeleton
@@ -103,9 +120,7 @@ class Project extends React.Component<{}, IState> {
               active
               paragraph={ { rows: 10 } }
               loading={ markdownLoading }>
-              { markdownLoaded ?
                 <div className={ styles.markdown } dangerouslySetInnerHTML={ { __html: markdownContent } } />
-                : null }
             </Skeleton>
           </div>
         </div>
