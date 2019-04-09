@@ -15,10 +15,7 @@ install:
   - yarn
 
 script:
-  - yarn build
-  - docker build -t utohub.com:latest . --no-cache
+  - ./build_image.sh
 
 after_script:
-  - docker login -u $REGISTRY_USER -p $REGISTRY_PASSWORD $REGISTRY
-  - docker tag utohub.com:latest $REGISTRY/utohub/utohub.com:latest
-  - docker push $REGISTRY/utohub/utohub.com:latest
+  - ./push_image.sh
