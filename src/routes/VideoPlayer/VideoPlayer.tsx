@@ -23,7 +23,6 @@ class VideoPlayer extends React.Component<{}, IState> {
     if (typeof query.src !== 'string') {
       return;
     }
-    console.log(query.src);
     this.setState({ src: query.src });
   }
 

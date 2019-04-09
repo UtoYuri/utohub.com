@@ -11,23 +11,14 @@ import Layout from "../../containers/CommonLayout/CommonLayout";
 interface IProjectMeta {
   name: string;
   title: string;
+  tags?: string[];
   logoUrl?: string | null;
-  link?: string | null;
   description?: string;
 }
 
-const projects: IProjectMeta[] = [
-  // {
-  //   name: '',
-  //   title: '',
-  //   logoUrl: null,
-  //   description: '',
-  //   link: null,
-  // },
-];
-
 interface IState {
   projectsVisible: boolean;
+  projects: IProjectMeta[];
 }
 
 class Home extends React.Component<{}, IState> {
@@ -36,8 +27,23 @@ class Home extends React.Component<{}, IState> {
     super(props);
     this.state = {
       projectsVisible: false,
+
+      projects: [],
     };
   }
+
+  async componentDidMount(): Promise<void> {
+    const projects = await this.fetchProjects();
+    this.setState({
+      projects
+    });
+  }
+
+  fetchProjects = async () => {
+    return await fetch('https://io.utohub.com/utohub/projects.json')
+      .then(response => response.json())
+      .catch(() => [])
+  };
 
   toggleProjects = () => {
     this.setState({
@@ -48,36 +54,37 @@ class Home extends React.Component<{}, IState> {
   renderProject = (project: IProjectMeta) => (
     <List.Item>
       <List.Item.Meta
-        avatar={project.logoUrl ? <Avatar src={project.logoUrl} /> : null}
-        title={<a href={project.link || 'javascript:'}>{project.title}</a>}
-        description={project.description}
+        avatar={ project.logoUrl ? <Avatar src={ project.logoUrl } /> : null }
+        title={ <a href={ `/project?name=${ project.name }` }>{ project.title }</a> }
+        description={ project.description }
       />
     </List.Item>);
 
   render() {
+    const { projectsVisible, projects } = this.state;
     return (
       <Layout>
-        <div className={styles.container}>
-          <div className={styles.content}>
-            <div className={styles.banner}>
-              <h1 className={styles.title}>UTOHUB</h1>
-              <p className={styles.slogan}>创意  •  实用  •  共享  •  开源</p>
-              <p className={styles.description}>知道在哪儿，世界就变得像一张地图那么小；不知道在哪儿，世界才广阔。</p>
+        <div className={ styles.container }>
+          <div className={ styles.content }>
+            <div className={ styles.banner }>
+              <h1 className={ styles.title }>UTOHUB</h1>
+              <p className={ styles.slogan }>创意 • 实用 • 共享 • 开源</p>
+              <p className={ styles.description }>知道在哪儿，世界就变得像一张地图那么小；不知道在哪儿，世界才广阔。</p>
             </div>
-            <div className={styles.links}>
-              <div className={styles.link}>
-                <a href="javascript:" onClick={this.toggleProjects}>
-                  <Icon type="project" className={styles.icon} />
+            <div className={ styles.links }>
+              <div className={ styles.link }>
+                <a href="javascript:" onClick={ this.toggleProjects }>
+                  <Icon type="project" className={ styles.icon } />
                 </a>
               </div>
-              <div className={styles.link}>
+              <div className={ styles.link }>
                 <a href="https://github.com/UtoYuri" target="_blank">
-                  <Icon type="github" className={styles.icon} />
+                  <Icon type="github" className={ styles.icon } />
                 </a>
               </div>
-              <div className={styles.link}>
+              <div className={ styles.link }>
                 <a href="mailto:support@utohub.com">
-                  <Icon type="mail" className={styles.icon} />
+                  <Icon type="mail" className={ styles.icon } />
                 </a>
               </div>
             </div>
@@ -85,15 +92,15 @@ class Home extends React.Component<{}, IState> {
           <Drawer
             title="Side Projects & Something Funny"
             placement="left"
-            onClose={this.toggleProjects}
-            visible={this.state.projectsVisible}
-            className={styles.projectsDrawer}
-            width={320}
+            onClose={ this.toggleProjects }
+            visible={ projectsVisible }
+            className={ styles.projectsDrawer }
+            width={ 320 }
           >
             <List
               itemLayout="horizontal"
-              dataSource={projects}
-              renderItem={item => this.renderProject(item)}
+              dataSource={ projects }
+              renderItem={ item => this.renderProject(item) }
             />
           </Drawer>
         </div>

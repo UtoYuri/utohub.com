@@ -1,0 +1,94 @@
+@import "../../variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  & > .content {
+    & > .meta {
+      padding: 40px 0;
+      box-shadow: 0 5px 10px 0 #ccc;
+      background-color: #fff;
+      position: relative;
+
+      & > .backHome {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        padding: 5px 20px;
+        border-radius: 30px;
+        border: 1px solid @color-normal;
+        transition: 0.5s all;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+
+        & > a {
+          width: inherit;
+          height: inherit;
+          text-decoration: none;
+          color: @color-normal;
+        }
+      }
+
+      & > .metaContent {
+        width: 80vw;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+
+        & > .left {
+          & > .links {
+            margin-top: 20px;
+            display: flex;
+
+            & > .link {
+              a {
+                margin: 0 10px 0 5px;
+              }
+            }
+          }
+        }
+
+        & > .right {
+          & > img {
+            width: 200px;
+            height: 200px;
+          }
+        }
+      }
+    }
+
+    & > .markdown {
+      padding: 60px 0 80px;
+      width: 50vw;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .container {
+    & > .content {
+      & > .meta {
+        & > .backHome {
+          left: 10px;
+        }
+
+        & > .metaContent {
+          & > .right {
+            display: none;
+          }
+        }
+      }
+
+      & > .markdown {
+        padding: 40px 0;
+        width: 80vw;
+        margin: 0 auto;
+      }
+    }
+  }
+}
