@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 yarn build
-docker build -t utohub.com:latest . --no-cache
+docker build -t ${IMAGE_NAME} . --no-cache
