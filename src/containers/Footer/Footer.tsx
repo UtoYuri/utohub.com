@@ -6,7 +6,7 @@ import Copyright from "../../components/Copyright/CopyRight";
 class Footer extends React.Component {
   render() {
     return (
-      <div className={styles.container}>
+      <div className={ styles.container }>
         <Copyright />
       </div>
     );

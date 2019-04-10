@@ -66,7 +66,7 @@ class Project extends React.Component<IProps, IState> {
       markdownMeta: meta,
       markdownContent: markdownIt.render(markdownContent),
     });
-    document.title = `${meta.title} - UTOHUB - Gee乐世界`;
+    document.title = `${ meta.title } - UTOHUB - Gee乐世界`;
   }
 
   fetchMarkdown = async (projectName: string) => {
@@ -84,7 +84,7 @@ class Project extends React.Component<IProps, IState> {
         <div className={ styles.container }>
           <div className={ styles.content }>
             <div className={ styles.meta }>
-              <BackHomeLink/>
+              <BackHomeLink />
               <Skeleton
                 className={ styles.metaContent }
                 active
