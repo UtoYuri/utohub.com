@@ -8,6 +8,7 @@ import 'antd/lib/icon/style/css';
 
 import styles from './Project.less';
 import Layout from "../../containers/CommonLayout/CommonLayout";
+import BackHomeLink from "../../components/BackHomeLink/BackHomeLink";
 
 interface IState {
   markdownLoading: boolean;
@@ -82,7 +83,7 @@ class Project extends React.Component<IProps, IState> {
         <div className={ styles.container }>
           <div className={ styles.content }>
             <div className={ styles.meta }>
-              <a href="/" className={ styles.backHome }>返回</a>
+              <BackHomeLink/>
               <Skeleton
                 className={ styles.metaContent }
                 active

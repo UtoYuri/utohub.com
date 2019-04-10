@@ -5,6 +5,7 @@ import 'antd/lib/input/style/css';
 
 import styles from './VideoPlayer.less';
 import Layout from "../../containers/CommonLayout/CommonLayout";
+import BackHomeLink from "../../components/BackHomeLink/BackHomeLink";
 
 interface IState {
   src?: string;
@@ -38,6 +39,7 @@ class VideoPlayer extends React.Component<{}, IState> {
     return (
       <Layout>
         <div className={ styles.container }>
+          <BackHomeLink className={ styles.backHome } />
           <Input
             size="large"
             placeholder="Source here..."

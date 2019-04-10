@@ -5,6 +5,10 @@
   margin: 0 auto;
   transition: 0.5s all;
 
+  & > .backHome {
+
+  }
+
   & > .srcInput {
     height: 40px;
     margin: 20px auto;
@@ -41,6 +45,10 @@
   .container {
     @width: 100vw;
     width: @width;
+
+    & > .backHome {
+      display: none;
+    }
 
     & > .playerContainer {
       height: @width * 0.56;
