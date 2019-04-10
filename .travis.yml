@@ -18,5 +18,5 @@ script:
   - ./build_image.sh
 
 after_script:
-  - ./push_image.sh
   - ./push_assets.sh
+  - ./push_image.sh
