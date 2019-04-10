@@ -19,3 +19,4 @@ script:
 
 after_script:
   - ./push_image.sh
+  - ./push_assets.sh
