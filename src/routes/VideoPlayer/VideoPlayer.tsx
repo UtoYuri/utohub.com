@@ -20,6 +20,7 @@ class VideoPlayer extends React.Component<{}, IState> {
   }
 
   componentDidMount(): void {
+    document.title = `Online Video Player - UTOHUB - Gee乐世界`;
     const query = qs.parse(location.search);
     if (typeof query.src !== 'string') {
       return;

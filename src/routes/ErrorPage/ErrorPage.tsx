@@ -5,6 +5,10 @@ import Layout from "../../containers/CommonLayout/CommonLayout";
 import ErrorInfo from "../../containers/ErrorInfo/ErrorInfo";
 
 class ErrorPage extends React.Component {
+  componentDidMount(): void {
+    document.title = 'ERROR - UTOHUB - Gee乐世界';
+  }
+
   render() {
     return (
       <Layout>

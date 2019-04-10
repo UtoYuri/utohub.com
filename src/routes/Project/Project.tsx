@@ -66,6 +66,7 @@ class Project extends React.Component<IProps, IState> {
       markdownMeta: meta,
       markdownContent: markdownIt.render(markdownContent),
     });
+    document.title = `${meta.title} - UTOHUB - Gee乐世界`;
   }
 
   fetchMarkdown = async (projectName: string) => {
