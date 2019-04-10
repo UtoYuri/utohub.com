@@ -40,7 +40,7 @@ class Home extends React.Component<{}, IState> {
   }
 
   fetchProjects = async () => {
-    return await fetch('https://io.utohub.com/utohub/projects.json')
+    return await fetch('https://io.utohub.com/utohub/home/data/projects.json')
       .then(response => response.json())
       .catch(() => [])
   };

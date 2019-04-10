@@ -68,7 +68,7 @@ class Project extends React.Component<IProps, IState> {
   }
 
   fetchMarkdown = async (projectName: string) => {
-    return await fetch(`https://io.utohub.com/utohub/${ projectName }/README.md`)
+    return await fetch(`https://io.utohub.com/utohub/home/data/${ projectName }/README.md`)
       .then(response => response.text())
       .catch(() => {
         return null;
