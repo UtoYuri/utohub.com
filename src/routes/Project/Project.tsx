@@ -95,7 +95,7 @@ class Project extends React.Component<IProps, IState> {
                       <h1>{ markdownMeta.title }</h1>
                       <p>{ markdownMeta.description }</p>
                       <div style={ { display: 'block' } }>
-                        { markdownMeta.tags ? markdownMeta.tags.split(',').map((tag: string) => (
+                        { markdownMeta.tags && Array.isArray(markdownMeta.tags) ? markdownMeta.tags.map((tag: string) => (
                           <Tag key={ tag }>{ tag }</Tag>)) : null }
                       </div>
                       <div className={ styles.links }>
@@ -111,7 +111,7 @@ class Project extends React.Component<IProps, IState> {
                       </div>
                     </div>
                     <div className={ styles.right }>
-                      { markdownMeta.qrcode ? <img src={ markdownMeta.qrcode } /> : null }
+                      { markdownMeta.qrcode ? <img src={ markdownMeta.qrcode } alt="qr" /> : null }
                     </div>
                   </div>
                   : <div className={ styles.metaContent }><span className={ styles.emptyTip }>Project Not Found!</span>

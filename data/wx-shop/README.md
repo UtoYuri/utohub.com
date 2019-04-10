@@ -1,7 +1,7 @@
 ---
 title: 小商店 - 微信小程序
 description: 包含用户、商品管理，在线下单支付以及订单状态推送的小商店微信小程序。
-tags: 全栈,小程序
+tags: [全栈,小程序]
 github: https://github.com/UtoYuri/Shop-WX
 ---
 
