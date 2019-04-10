@@ -8,7 +8,6 @@ import 'antd/lib/icon/style/css';
 
 import styles from './Project.less';
 import Layout from "../../containers/CommonLayout/CommonLayout";
-import * as qs from "query-string";
 
 interface IState {
   markdownLoading: boolean;
@@ -17,9 +16,17 @@ interface IState {
   markdownContent: string;
 }
 
-class Project extends React.Component<{}, IState> {
+interface IProps {
+  match: {
+    params: {
+      name: string;
+    };
+  }
+}
 
-  constructor(props: Readonly<{}>) {
+class Project extends React.Component<IProps, IState> {
+
+  constructor(props: IProps) {
     super(props);
     this.state = {
       markdownLoading: true,
@@ -31,40 +38,33 @@ class Project extends React.Component<{}, IState> {
 
 
   async componentDidMount(): Promise<void> {
-    const query = qs.parse(location.search);
-    let projectName = query.name;
-    if (typeof projectName !== 'string') {
-      projectName = 'empty';
-    }
-    const markdown = await this.fetchMarkdown(projectName);
-    if (!markdown) {
-      return;
-    }
-    const markdownIt = new MarkdownIt();
-    const formatted = frontMatter(markdown);
-    const meta = formatted.attributes as any;
-    if (meta.title) {
-      this.setState({
-        markdownLoading: false,
-        markdownLoaded: true,
-        markdownMeta: meta,
-        markdownContent: markdownIt.render(formatted.body),
-      });
-    } else {
-      const emptyContent = `\
+    const { match: { params } } = this.props;
+    let projectName = params.name;
+    let markdownLoaded = false;
+    let meta = {} as any;
+    let markdownContent = `\
 ## 关于
 闲暇之余，挥霍光阴。
 
 #### 作者
 @yuri.zhu
       `;
-      this.setState({
-        markdownLoading: false,
-        markdownLoaded: false,
-        markdownMeta: meta,
-        markdownContent: markdownIt.render(emptyContent),
-      });
+    const markdown = await this.fetchMarkdown(projectName);
+    const markdownIt = new MarkdownIt();
+    if (markdown) {
+      const formatted = frontMatter(markdown);
+      meta = formatted.attributes;
+      if (meta.title) {
+        markdownLoaded = true;
+        markdownContent = formatted.body;
+      }
     }
+    this.setState({
+      markdownLoading: false,
+      markdownLoaded: markdownLoaded,
+      markdownMeta: meta,
+      markdownContent: markdownIt.render(markdownContent),
+    });
   }
 
   fetchMarkdown = async (projectName: string) => {
@@ -112,7 +112,8 @@ class Project extends React.Component<{}, IState> {
                       { markdownMeta.qrcode ? <img src={ markdownMeta.qrcode } /> : null }
                     </div>
                   </div>
-                  : <div className={ styles.metaContent }><span className={styles.emptyTip}>Project Not Found!</span></div> }
+                  : <div className={ styles.metaContent }><span className={ styles.emptyTip }>Project Not Found!</span>
+                  </div> }
               </Skeleton>
             </div>
             <Skeleton
@@ -120,7 +121,7 @@ class Project extends React.Component<{}, IState> {
               active
               paragraph={ { rows: 10 } }
               loading={ markdownLoading }>
-                <div className={ styles.markdown } dangerouslySetInnerHTML={ { __html: markdownContent } } />
+              <div className={ styles.markdown } dangerouslySetInnerHTML={ { __html: markdownContent } } />
             </Skeleton>
           </div>
         </div>

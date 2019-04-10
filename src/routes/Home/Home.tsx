@@ -55,7 +55,7 @@ class Home extends React.Component<{}, IState> {
     <List.Item>
       <List.Item.Meta
         avatar={ project.logoUrl ? <Avatar src={ project.logoUrl } /> : null }
-        title={ <a href={ `/project?name=${ project.name }` }>{ project.title }</a> }
+        title={ <a href={ `/project/${ project.name }` }>{ project.title }</a> }
         description={ project.description }
       />
     </List.Item>);

@@ -13,7 +13,7 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route path="/" exact component={ Home } />
-          <Route path="/project" exact component={ Project } />
+          <Route path="/project/:name" exact component={ Project } />
           <Route path="/player" exact component={ VideoPlayer } />
           <Route component={ ErrorPage } />
         </Switch>
