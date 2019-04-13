@@ -111,7 +111,7 @@ class Project extends React.Component<IProps, IState> {
                       </div>
                     </div>
                     <div className={ styles.right }>
-                      { markdownMeta.qrcode ? <img src={ markdownMeta.qrcode } alt="qr" /> : null }
+                      { markdownMeta.cover ? <img src={ markdownMeta.cover } alt="cover" /> : null }
                     </div>
                   </div>
                   : <div className={ styles.metaContent }><span className={ styles.emptyTip }>Project Not Found!</span>
