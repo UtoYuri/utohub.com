@@ -7,6 +7,13 @@
      "description": "分享个人项目，展示简历和生活博客。"
    },
   {
+    "name": "magical-memo",
+    "title": "神奇笔记 - 微信小程序",
+    "tags": ["全栈", "小程序"],
+    "logoUrl": "https://io.utohub.com/utohub/home/data/magical-memo/images/logo.jpg",
+    "description": "这次一次尝试，探索移动端体验感最好的笔记应用。"
+  },
+  {
     "name": "wx-shop",
     "title": "小商店 - 微信小程序",
     "tags": ["全栈", "小程序"],
