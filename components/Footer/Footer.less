@@ -1,0 +1,21 @@
+@import "../../variables";
+
+.footer {
+  padding: 10px 0;
+
+  .copyright {
+    text-align: center;
+    color: @color-normal;
+    font-size: 14px;
+
+    & > .author {
+      margin-right: 10px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .container {
+      font-size: 0.8em;
+    }
+  }
+}

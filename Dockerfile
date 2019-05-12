@@ -2,10 +2,11 @@ FROM node:11-alpine
 
 WORKDIR /app
 
-ADD build .
+ADD . .
 
-RUN yarn global add serve
+RUN yarn
+RUN yarn build
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "serve -s -l 3000 ."]
+CMD ["yarn", "start"]

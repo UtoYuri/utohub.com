@@ -15,8 +15,4 @@ install:
   - yarn
 
 script:
-  - ./build_image.sh
-
-after_script:
-  - ./push_assets.sh
-  - ./push_image.sh
+  - yarn lint
