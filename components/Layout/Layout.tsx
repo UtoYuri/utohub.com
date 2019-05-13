@@ -1,4 +1,5 @@
 import * as React from 'react';
+import getConfig from 'next/config';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -7,6 +8,8 @@ import styles from './Layout.less';
 interface ILayoutProps {
   children?: React.ReactNode;
 }
+
+const { publicRuntimeConfig } = getConfig();
 
 class Layout extends React.Component<ILayoutProps, {}> {
   render() {
@@ -18,6 +21,7 @@ class Layout extends React.Component<ILayoutProps, {}> {
           body {
             margin: 0;
             padding: 0;
+            background-image: url('${publicRuntimeConfig.assetPrefix}/static/images/background.png');
           }
         `}</style>
         <Header />
