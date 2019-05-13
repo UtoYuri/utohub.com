@@ -1,5 +1,5 @@
-const withTypescript = require('@zeit/next-typescript')
-const withLess = require('@zeit/next-less')
+const withTypescript = require('@zeit/next-typescript');
+const withLess = require('@zeit/next-less');
 const lessConfig = {
   cssModules: true,
   cssLoaderOptions: {
@@ -7,5 +7,12 @@ const lessConfig = {
     localIdentName: "[local]___[hash:base64:5]",
   }
 };
+const assetsPrefix = process.env.NODE_ENV === 'production' ? 'https://io.utohub.com/utohub/home' : '';
 
-module.exports = withTypescript(withLess(lessConfig))
+module.exports = {
+  ...withTypescript(withLess(lessConfig)),
+  assetPrefix: assetsPrefix,
+  publicRuntimeConfig: {
+    assetPrefix: assetsPrefix,
+  }
+};
