@@ -16,6 +16,7 @@ install:
 
 script:
   - yarn lint
+  - yarn build
   - ./build_image.sh
 
 after_script:
