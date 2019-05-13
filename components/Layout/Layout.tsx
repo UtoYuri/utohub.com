@@ -23,6 +23,10 @@ class Layout extends React.Component<ILayoutProps, {}> {
             padding: 0;
             background-image: url('${publicRuntimeConfig.assetPrefix}/static/images/background.png');
           }
+          a {
+            text-decoration: none;
+            color: #000;
+          }
         `}</style>
         <Header />
         { children }

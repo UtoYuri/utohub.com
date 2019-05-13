@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import * as React from 'react';
 import { Avatar, Drawer, Icon, List } from 'antd';
 
+import Routes from '../../routes';
 import styles from './Home.less';
 
 interface IProjectMeta {
@@ -51,7 +51,7 @@ class Home extends React.Component<{}, IState> {
     <List.Item>
       <List.Item.Meta
         avatar={ project.logoUrl ? <Avatar src={ project.logoUrl } /> : null }
-        title={ <Link href={ `/project/${ project.name }` }><a>{ project.title }</a></Link> }
+        title={ <Routes.Link route={ `/project/${ project.name }` }><a>{ project.title }</a></Routes.Link> }
         description={ project.description }
       />
     </List.Item>

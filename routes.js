@@ -1,5 +1,6 @@
 const nextRoutes = require('next-routes');
-module.exports = nextRoutes()
+const routes = nextRoutes()
   .add('index', '/')
   .add('video player', '/v', 'v')
   .add('project', '/project/:name');
+module.exports = routes;

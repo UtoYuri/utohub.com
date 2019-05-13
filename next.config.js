@@ -7,7 +7,7 @@ const lessConfig = {
     localIdentName: "[local]___[hash:base64:5]",
   }
 };
-const assetsPrefix = process.env.NODE_ENV === 'production' ? 'https://io.utohub.com/utohub/home' : '';
+const assetsPrefix = process.env.NODE_ENV === 'productionx' ? 'https://io.utohub.com/utohub/home' : '';
 
 module.exports = {
   ...withTypescript(withLess(lessConfig)),
