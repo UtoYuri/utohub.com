@@ -20,5 +20,5 @@ script:
   - ./build_image.sh
 
 after_script:
-  - ./push_assets.sh
-  - ./push_image.sh
+  - travis_wait ./push_assets.sh
+  - travis_wait ./push_image.sh
