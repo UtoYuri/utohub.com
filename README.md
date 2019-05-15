@@ -4,7 +4,7 @@
 分享个人项目，展示简历和生活博客.
 
 ## 开发技术栈
-`Typescript`、`React`、`Nest`、 `Storybook`
+`Typescript`、`React`、`Nest`
 
 ## 在线预览
 [utohub.com](https://utohub.com)
